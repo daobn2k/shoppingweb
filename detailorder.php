@@ -14,42 +14,27 @@ include('includes/connection.php');
         <thead>
           <tr>
             <th>ID</th>
-            <th>User ID</th>
-            <th>Họ tên</th>
-            <th>Email</th>
-            <th>SDT</th>
-            <th>Ngày đặt</th>
-            <th>Trạng Thái</th>
-            <th>Chi tiết đơn hàng</th>
+            <th>ID Sản phẩm</th>
+            <th>Số lượng</th>
             <th>DELETE</th>
           </tr>
         </thead>
         <tbody>
    <?php
-        $sql = "SELECT * FROM `order`";
+        $id = intval($_GET['editid']);
+        $sql = "SELECT * FROM order_detail WHERE oder_id = '$id'";
         $run = mysqli_query($conn,$sql);
         if (mysqli_num_rows($run)){ 
             $count = 0;
             while($row = mysqli_fetch_assoc($run)) {
 ?>
      <tr>
-            <td><?php echo ++$count;?></td>
-            <td><?php echo $row['user_id']?></td>
-            <td><?php echo $row['name']?></td>
-            <td><?php echo $row['email']?></td>
-            <td><?php echo $row['phone']?></td>
-            <td><?php echo $row['created']?></td>
-            <td> <?php echo $row['status']?"hiển thị":"ẩn"?></td>
-            <td>
-            
-                <form action="detailorder.php" method="get">
-                    <input type="hidden" name="editid" value="<?php echo $row['id']?>">
-                    <button  type="submit" class="btn btn-success" style="margin-left: 25px;"> Chi tiết</button>
-                </form>
-            </td>
+            <td><?php echo $row['oder_id']?></td>
+            <td><?php echo $row['product_id']?></td>
+            <td><?php echo $row['quantity']?></td>
             <td>
                 <form action="code.php" method="post">
-                  <input type="hidden" name="deleteid" value="<?php echo $row['id']?>">
+                  <input type="hidden" name="deleteid" value="<?php echo $row['oder_detail']?>">
                   <button type="submit" name="deletebtn" class="btn btn-danger"> Xóa</button>
                 </form>
             </td>
