@@ -42,11 +42,11 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1wo" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-product"></i>
     <span>Quản Lí Sản Phẩm</span>
   </a>
-  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+  <div id="collapse1wo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <a class="collapse-item" href="addproduct.php">Thêm Mới Sản Phẩm</a>
       <a class="collapse-item" href="listproducts.php">Danh Sách Sản Phẩm</a>
@@ -55,18 +55,30 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseT1" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-product"></i>
     <span>Quản Lí Đơn hàng</span>
   </a>
-  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+  <div id="collapseT1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <a class="collapse-item" href="listorder.php">Danh Sách Đơn Hàng</a>
     </div>
   </div>
 </li>
 
-
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseáddsasdaasdasd" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-product"></i>
+    <span>Quản Lí Khách Hàng</span>
+  </a>
+  <div id="collapseáddsasdaasdasd" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <a class="collapse-item" href="showinfouser.php">Danh Sách Khách Hàng</a>
+      <a class="collapse-item" href="salecode.php">Danh sách ưu đãi</a>
+      <a class="collapse-item" href="sendMail.php">Chăm sóc khách hàng</a>
+    </div>
+  </div>
+</li>
 
 
 

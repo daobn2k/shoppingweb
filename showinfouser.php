@@ -68,9 +68,11 @@ $run  = mysqli_query($conn,$sql);
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Admin Profile 
+    <h6 class="m-0 font-weight-bold text-primary" style="display: flex;
+    justify-content: space-between;
+    align-items: center;"> List User Profile 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addadminprofile">
-              Add Admin Profile 
+              Add New User
             </button>
     </h6>
   </div>
@@ -99,8 +101,6 @@ $run  = mysqli_query($conn,$sql);
             // output data of each row
             while($row = mysqli_fetch_assoc($run)) {
                 if($row['usertype'] == 'user'){
-
-               
 ?>
      <tr><img src="" alt="">
             <td><?php echo ++$count;?></td>

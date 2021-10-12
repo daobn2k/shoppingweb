@@ -20,6 +20,8 @@
 </head>
 
 <body id="page-top">
-
+<?php 
+include('database/db_global.php');
+?>
   <!-- Page Wrapper -->
   <div id="wrapper">

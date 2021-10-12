@@ -290,7 +290,7 @@ if(isset($_POST['newuseredit'])) {
       echo "Sorry, there was an error uploading your file.";
     }
   }
-$anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["name"]);
+  $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["name"]);
 
   $id = $_POST['edituserid'];
   $name = $_POST['username'];
@@ -298,9 +298,9 @@ $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["n
   $password = $_POST['password'];
   $status = isset($_POST['status'])?$_POST['status']:0;
   $update_usertype = $_POST['update_usertype'];
-$sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',usertype='$update_usertype',status ='$status' Where id = '$id'";
-$run = mysqli_query($conn,$sql) or die("Chưa Thay Đổi Được");
-header('location:showinfo.php');
+  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',sanh = '$anh',usertype='$update_usertype',status ='$status' Where id = '$id'";
+  $run = mysqli_query($conn,$sql) or die("Hiện tại chưa thay đổi được");
+  header('location:showinfouser.php');
 }
 if(isset($_POST['deleteadminbtn'])){
   $id = $_POST['deleteuserid'];
