@@ -103,9 +103,9 @@
   </a>
   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">   
-      <a class="collapse-item" href="showinfo.php">Hiển Thị Admin </a>
-      <a class="collapse-item" href="showinfouser.php">Hiển Thị Người Dùng</a>
-      <a class="collapse-item" href="showinfoadmin2.php">Hiển Thị Người quản lí hồ sơ</a>
+      <a class="collapse-item" href="showinfo2.php">Hiển Thị Admin </a>
+      <a class="collapse-item" href="showinfouser2.php">Hiển Thị Người Dùng</a>
+      <a class="collapse-item" href="showinfoadmin22.php">Hiển Thị Người quản lí hồ sơ</a>
       <div class="collapse-divider"></div>
     </div>
   </div>

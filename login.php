@@ -15,11 +15,16 @@ if(isset($_POST['login_btn'])){
 $id_user = $usertypes['id'];
 $pass_user = $usertypes['password'];
     if($usertypes['usertype'] == "admin"){
-$_SESSION['username'] = $email_login;
-$_SESSION['id'] = $id_user;
-$_SESSION['pass_user'] = $pass_user;
-header('location:index.php');
-    }  else if($usertypes['usertype'] == "user"){
+      $_SESSION['username'] = $email_login;
+      $_SESSION['id'] = $id_user;
+      $_SESSION['pass_user'] = $pass_user;
+      header('location:index.php');
+    }else if($usertypes['usertype'] == "admin2"){
+      $_SESSION['username'] = $email_login;
+      $_SESSION['id'] = $id_user;
+      $_SESSION['pass_user'] = $pass_user;
+      header('location:index2.php');
+    }else if($usertypes['usertype'] == "user"){
         $_SESSION['username'] = $email_login;
         $_SESSION['id'] = $id_user;
         $_SESSION['pass_user'] = $pass_user;
