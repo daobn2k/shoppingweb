@@ -9,6 +9,7 @@ $run  = mysqli_query($conn,$sql);
 
 ?>
 <!-- SHOW INFO USER -->
+
 <div class="modal fade" id="addadminprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -18,6 +19,7 @@ $run  = mysqli_query($conn,$sql);
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+   
       <form action="code.php" method="POST"  enctype="multipart/form-data">
 
         <div class="modal-body">
@@ -66,8 +68,8 @@ $run  = mysqli_query($conn,$sql);
 <div class="container-fluid">
 
 <!-- DataTales Example -->
-<div class="card shadow mb-4">
-  <div class="card-header py-3">
+<div class="card shadow ">
+  <div class="card-header ">
     <h6 class="m-0 font-weight-bold text-primary" style="display: flex;
     justify-content: space-between;
     align-items: center;"> List User Profile 
@@ -75,8 +77,29 @@ $run  = mysqli_query($conn,$sql);
               Add New User
             </button>
     </h6>
+  <div style="display:flex;justify-content: center;align-items:center;">
+
+    <form method="POST" class="input-group mb-3" style="width:50%;height: 42px;">
+                            <input style='height: 42px; border-radius:4px 0 0 4px;' type="search" name="search" class="form-control" placeholder="Tìm Kiếm Khách Hàng" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-secondary" type="submit" id="button-addon2"
+                            style="
+                            height: 42px; 
+                            display: flex;
+                            justify-content:center;
+                            align-items:center;
+                            border-radius:0;
+                            border-radius:0 4px 4px 0;
+                            position:absolute !important;
+                            right:0;
+                            z-index: 1;
+                            "
+                            ><i class="fas fa-search" style="margin-right:0"></i></button>
+   </form>
+  </div> 
+
   </div>
-<div class="card-body">
+
+<div class="card-body" style="padding:0">
 
     <div class="table-responsive">
 
@@ -95,15 +118,60 @@ $run  = mysqli_query($conn,$sql);
           </tr>
         </thead>
         <tbody>
+<?php
+        if(!empty($_POST["search"])){
+                                    $search_value=$_POST["search"];
+                                    if( $search_value !== '') {
+
+                                                $sql="select * from user where username like '%$search_value%'";
+
+                                                $customerList = Result($sql);
+
+                                                $i=0;
+                                                     foreach( $customerList as $key => $row){
+                                                      $i++;
+                                                ?>
+                                                <tr><img src="" alt="">
+            <td><?php echo $i;?></td>
+            <td><?php echo $row['username']?></td>
+            <td><?php echo $row['email']?></td>
+            <td><?php echo $row['password']?></td>       
+            <td><img src="<?php echo $row['anh']?>" alt="" width = "150px;">     
+            <td><?php echo $row['usertype']?></td>    
+            <td> <?php echo $row['status']?"hiển thị":"ẩn"?></td>
+            <td>
+            
+                <form action="edituser.php" method="post">
+                    <input type="hidden" name="edituserid" value="<?php echo $row['id']?>">
+                    <button  type="submit" name="edituser" class="btn btn-success"> EDIT</button>
+                </form>
+            </td>
+            <td>
+                <form action="code.php" method="post">
+                  <input type="hidden" name="deleteuserid" value="<?php echo $row['id']?>">
+                  <button type="submit" name="deleteuserbtn" class="btn btn-danger"> DELETE</button>
+                </form>
+            </td>
+          </tr>
+          <?php 
+                                            }
+                                         }       
+                               else{
+                                 return null;
+                               }
+   ?>
+
    <?php
-        if (mysqli_num_rows($run) > 0) { 
-            $count = 0;
-            // output data of each row
-            while($row = mysqli_fetch_assoc($run)) {
-                if($row['usertype'] == 'user'){
+       }else{
+        $sql = 'SELECT * FROM user ';
+        $customerList = Result($sql);
+        
+        $i = 0;
+        foreach( $customerList as $key => $row){
+          $i++;
 ?>
      <tr><img src="" alt="">
-            <td><?php echo ++$count;?></td>
+            <td><?php echo $i?></td>
             <td><?php echo $row['username']?></td>
             <td><?php echo $row['email']?></td>
             <td><?php echo $row['password']?></td>       
@@ -127,10 +195,6 @@ $run  = mysqli_query($conn,$sql);
           <?php
            }
             }
-          } else {
-            echo "0 results";
-          }          
-          mysqli_close($conn);
           ?>
         </tbody>
       </table>

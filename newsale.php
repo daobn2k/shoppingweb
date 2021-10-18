@@ -32,10 +32,53 @@ if(isset($_GET['delete_id'])){
         $start_date = $_POST['start'];
         $start_end = $_POST['end'];
         if($start_date !== '' && $start_end !== '' && $sale_user_id && $sale !== ''){
-        $sql_add = "INSERT INTO sale_user(sale_user_id,sale_code, sale, sale_start, sale_end,status) VALUES ('$sale_user_id','$sale_code','$sale','$sale_start','$start_end','$status')"; 
+        $sql_add = "INSERT INTO sale_user(sale_user_id,sale_code, sale, sale_start, sale_end,status) VALUES ('$sale_user_id','$sale_code','$sale','$start_date','$start_end','$status')"; 
         execute($sql_add);
         $message ='Thêm thành công rùi nhó';
+
+
+        $sql_select = "SELECT * FROM `user` WHERE id = '$sale_user_id'";
+        $rs_get = Result($sql_select);
+        $name = $rs_get[0]['username'];
+        $email =  $rs_get[0]['email'];
+        
+        $subject = "Ưu đãi siêu may mắn cho khách hàng thân thiện ";
+        $content = "Khách Hàng may mắn: ".$name."<br>"."code: ". $sale_code."<br>"."<br>"."Thân gửi quý khách nhân dịp siêu ưu đãi ^^ hãy sử dụng mã code phía trên để được nhận ưu đãi ";
+
+
+
+        include 'PHPMailer/PHPMailer.php';
+		include 'PHPMailer/SMTP.php';
+		include 'PHPMailer/Exception.php';
+		
+		$mail = new PHPMailer\PHPMailer\PHPMailer;       
+		 //Server settings
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		$mail->Username = 'vvdao096@gmail.com';                 // SMTP username
+		$mail->Password = 'vandao2k'; 
+		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 587;                                    // TCP port to connect to
+
+		//Recipients
+		$mail->setFrom('vvdao096@gmail.com', 'Cửa Hàng Phân Nhánh EcoMart');
+		$mail->addAddress('vvdao096@gmail.com', 'Quản Lý');
+		$mail->isHTML(true);                                  // Set email format to HTML
+		$mail->Subject = 'Tin nhắn đã được gửi thành công';
+		$mail->Body    = "Event giảm giá cho khách hàng";
+		$mail->CharSet="UTF-8";
+		if ($mail->send()) {
+			$mail->addAddress($email, 'Khách hàng');
+			$mail->Subject = $subject;
+			$mail->Body    = $content;
+			$mail->send();
+
+		} else {
+			echo 'Tin nhắn không được gửi đi';
+		}   
         header('Location: salecode.php?msg='.urlencode(serialize($message)));
+
         }else{
         showMessage('Làm ơn kiểm tra lại đi thiếu gì rồi');
         }
@@ -59,7 +102,7 @@ if(isset($_GET['delete_id'])){
                         <?php
                         foreach ($result_user as $key => $result_user) {
                             ?>
-                        <option value = "<?php echo $result_user['id'] ?>"><?php echo $result_user['email'] ?></option>
+                        <option value = "<?php echo $result_user['id'] ?>"><?php echo $result_user['username'] ?></option>
                         <?php
                            }
                         ?>
