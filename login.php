@@ -14,12 +14,13 @@ if(isset($_POST['login_btn'])){
     $usertypes = mysqli_fetch_array($run);
 $id_user = $usertypes['id'];
 $pass_user = $usertypes['password'];
-    if($usertypes['usertype'] == "admin"){
+    if($usertypes['usertype'] == "admin" || $usertypes['usertype'] == "admin2"){
 $_SESSION['username'] = $email_login;
 $_SESSION['id'] = $id_user;
 $_SESSION['pass_user'] = $pass_user;
+$_SESSION['usertype'] = $usertypes["usertype"];
 header('location:index.php');
-    }  else if($usertypes['usertype'] == "user"){
+} else if($usertypes['usertype'] == "user"){
         $_SESSION['username'] = $email_login;
         $_SESSION['id'] = $id_user;
         $_SESSION['pass_user'] = $pass_user;
