@@ -118,6 +118,8 @@ header('location:listproducts.php');
 
 
 if(isset($_POST['newedit'])){
+  $anh = $_POST['fileToUpload_edit'];
+
     $target_dir = "img/";
 $target_file = $target_dir . basename($_FILES["fileToUpload_edit"]["name"]);
 $uploadOk = 1;
@@ -164,9 +166,9 @@ if ($uploadOk == 0) {
   } else {
     // echo "Sorry, there was an error uploading your file.";
   }
+  $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload"]["name"]);
 }
     $id = $_POST['editid'];
-    $anh = "http://localhost/shopping/img/".basename( $_FILES["fileToUpload_edit"]["name"]);
     $name = $_POST['name'];
     $cat_id = $_POST['cat_id'];
     $price = $_POST['price'];
@@ -229,9 +231,6 @@ header('location:listproducts.php');
   }
 $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload"]["name"]);
 
-echo $anh;
-echo "<br>";
-
 $username = $_POST['username'];
 $email =$_POST['email'];
 $password =$_POST['password'];
@@ -249,6 +248,8 @@ $run = mysqli_query($conn,$sqlres);
  }
 
 if(isset($_POST['newuseredit'])) {
+  $anh = $_POST['fileToUpload_edit'];
+
   $target_dir = "img/";
   $target_file = $target_dir.basename($_FILES["fileToUpload_edit"]["name"]);
   $uploadOk = 1;
@@ -295,16 +296,19 @@ if(isset($_POST['newuseredit'])) {
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
+
+
   }
-  $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["name"]);
 
   $id = $_POST['edituserid'];
   $name = $_POST['username'];
   $email = $_POST['email'];
+  $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["name"]);
   $password = $_POST['password'];
   $status = isset($_POST['status'])?$_POST['status']:0;
-  $update_usertype = $_POST['update_usertype'];
-  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',sanh = '$anh',usertype='$update_usertype',status ='$status' Where id = '$id'";
+  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',usertype='user',status ='$status' Where id = '$id'";
+  
+  echo $sql;
   $run = mysqli_query($conn,$sql) or die("Hiện tại chưa thay đổi được");
   header('location:showinfouser.php');
 }
