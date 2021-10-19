@@ -114,9 +114,16 @@
     <span>Admin</span>
   </a>
   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">   
-      <a class="collapse-item" href="showinfo.php">Hiển Thị Admin </a>
-      <a class="collapse-item" href="showinfouser.php">Hiển Thị Người Dùng</a>
+    <div class="bg-white py-2 collapse-inner rounded"> 
+    <?php 
+
+      if (isset($_SESSION["usertype"] )) {
+        
+            if ($_SESSION["usertype"] == "admin") { ?>
+              <a class="collapse-item" href="showinfo.php" name="button1">Hiển Thị Admin </a>
+              <a class="collapse-item" href="showinfoadmin2.php" name="button3">Hiển Thị Nhân viên</a>
+    <?php }}?>  
+      <a class="collapse-item" href="showinfouser.php" name="button2">Hiển Thị Người Dùng</a>
       <div class="collapse-divider"></div>
     </div>
   </div>

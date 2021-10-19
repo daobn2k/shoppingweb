@@ -239,7 +239,13 @@ $status = isset($_POST['status'])?$_POST['status']:0;
 $usertype = $_POST['usertype'];
 $sqlres = "INSERT INTO user(username,email,password,anh,usertype,status) VALUES('$username','$email','$password','$anh','$usertype','$status')";
 $run = mysqli_query($conn,$sqlres);
-header('location:showinfo.php');
+  if($usertype =='admin'){
+    header('location:showinfo.php');
+  }else if($usertype =='admin2'){
+    header('location:showinfoadmin2.php');
+  }else{
+    header('location:showinfouser.php');
+  }
  }
 
 if(isset($_POST['newuseredit'])) {
@@ -308,6 +314,8 @@ if(isset($_POST['deleteadminbtn'])){
   $run = mysqli_query($conn,$sql) or die("Hổng Có Xóa Được");
   if($update_usertype =='admin'){
     header('location:showinfo.php');
+  }else if($update_usertype =='admin2'){
+    header('location:showinfoadmin2.php');
   }else{
     header('location:showinfouser.php');
   }
@@ -361,5 +369,25 @@ if(isset($_POST['changepass']) && isset($_SESSION['pass_user'])){
     }
   }
 }
+// if (isset($_POST['button1']) || isset($_POST['button3'])) {
+//   $query = "SELECT *FROM user ";
+//   $result = mysqli_query($conn, $query);
+//   while ($row = mysqli_fetch_array($result)) {
+//     $usertype = $row["usertype"];
+//   }
+//   if ($usertype = "admin2") {
+//     echo "<script>alert('Bạn không có quyền')</script>";
+//   }else{
 
+//   }
+// }
+$sql = "SELECT * FROM user";
+      $run  = mysqli_query($conn,$sql);
+       if (mysqli_num_rows($run) > 0) { 
+            
+            while($row = mysqli_fetch_array($run)) {
+              $usertype = $row["usertype"];
+            }
+            if ($usertype = "admin") {
+              }}
 ?>
