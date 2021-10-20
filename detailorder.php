@@ -4,7 +4,8 @@ include('security.php');
 include('includes/header.php'); 
 include('includes/navbar.php'); 
 include('includes/connection.php');
-
+$price = 0;
+$totalBill = 0;
 ?>
 <div class="card-body">
 
@@ -14,7 +15,8 @@ include('includes/connection.php');
         <thead>
           <tr>
             <th>ID</th>
-            <th>ID Sản phẩm</th>
+            <th>Tên Sản phẩm</th>
+            <th>Ảnh</th>
             <th>Số lượng</th>
             <th>DELETE</th>
           </tr>
@@ -30,7 +32,20 @@ include('includes/connection.php');
 ?>
      <tr>
             <td><?php echo $row['oder_id']?></td>
-            <td><?php echo $row['product_id']?></td>
+            <?php 
+              $idProduct = $row['product_id'];
+              $sqlProduct = "SELECT * FROM products WHERE pro_id = '$idProduct'";
+              $query = mysqli_query($conn,$sqlProduct);
+              if (mysqli_num_rows($query)){
+                while($rowProduct = mysqli_fetch_assoc($query)) {
+             ?>
+            <td><?php echo $rowProduct['name']?></td>
+            <td><img src="<?php echo $rowProduct['image']?>" alt="<?php echo $rowProduct['name']?>"></td>
+            <?php 
+                $price = $rowProduct['price'];
+                }
+              }
+             ?>
             <td><?php echo $row['quantity']?></td>
             <td>
                 <form action="code.php" method="post">
@@ -39,7 +54,9 @@ include('includes/connection.php');
                 </form>
             </td>
           </tr>
-          <?php  }
+          <?php
+            $totalBill = $price * $row['quantity'];
+           }
           } else {
             echo "0 results";
           }
@@ -48,8 +65,11 @@ include('includes/connection.php');
           ?>
         </tbody>
       </table>
-
-   
+   <div>
+    Tổng tiền: 
+     <?php echo $totalBill; ?>
+     đ
+   </div>
     </div>
   </div>
   <?php
