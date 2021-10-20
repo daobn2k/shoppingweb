@@ -111,8 +111,8 @@ $run  = mysqli_query($conn,$sql);
             <td><?php echo $row['usertype']?></td>    
             <td> <?php echo $row['status']?"hiển thị":"ẩn"?></td>
             <td>
-                <form action="" method="post">
-                  <input type="hidden" name="detailsbtn" value="<?php echo $row['id']?>">
+                <form action="hopdonglaodong.php" method="post">
+                  <input type="hidden" name="detailsbtnid" value="<?php echo $row['id']?>">
                   <button type="submit" name="detailsbtn" class="btn btn-warning"> DETAILS</button>
                 </form>
             </td>
