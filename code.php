@@ -305,8 +305,9 @@ if(isset($_POST['newuseredit'])) {
   $email = $_POST['email'];
   $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["name"]);
   $password = $_POST['password'];
+  $usertype = $_POST['usertype'];
   $status = isset($_POST['status'])?$_POST['status']:0;
-  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',usertype='user',status ='$status' Where id = '$id'";
+  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',usertype='$usertype',status ='$status' Where id = '$id'";
   
   echo $sql;
   $run = mysqli_query($conn,$sql) or die("Hiện tại chưa thay đổi được");
