@@ -51,7 +51,7 @@ foreach($run as $row ){
                 <label>USER TYPE</label>
                <select name="update_usertype" id="">
                <option value="admin">Admin</option>
-               <option value="admin">Admin2</option>
+               <option value="admin2">Admin2</option>
                <option value="user">User</option>
                </select>
             </div>
