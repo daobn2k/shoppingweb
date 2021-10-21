@@ -48,6 +48,18 @@ foreach($run as $row ){
                           <img src="<?php echo $row['anh']?>" alt="" width=300px>
             </div>  
             <div class="form-group">
+                <label>Địa chỉ</label>
+                <input type="text" name="address" class="form-control" value ="<?php echo $row['address']?>" placeholder="Your address">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="number" name="phone" class="form-control" value ="<?php echo $row['phone']?>" placeholder="Phone-number">
+            </div>
+            <div class="form-group">
+                <label>Level</label>
+                <input type="text" name="level" class="form-control" value ="<?php echo $row['level']?>" placeholder="Level">
+            </div>
+            <div class="form-group">
                 <label>USER TYPE</label>
                <select name="update_usertype" id="">
                <option value="admin">Admin</option>
