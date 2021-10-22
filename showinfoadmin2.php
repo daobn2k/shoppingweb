@@ -42,6 +42,18 @@ $run  = mysqli_query($conn,$sql);
                           <label for="fileToUpload">Ảnh</label>
                           <input type="file" name="fileToUpload" id="fileToUpload">
             </div>  
+            <div class="form-group">
+                <label>Địa chỉ</label>
+                <input type="text" name="address" class="form-control" placeholder="Your address">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="number" name="phone" class="form-control" placeholder="Phone-number">
+            </div>
+            <div class="form-group">
+                <label>Level</label>
+                <input type="text" name="level" class="form-control" placeholder="Level">
+            </div>
             <div class="form-check">
                                   <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="status" id="status" value="1" checked>
@@ -87,6 +99,9 @@ $run  = mysqli_query($conn,$sql);
             <th>Email</th>
             <th>Password</th>
             <th>AVATAR</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Level</th>
             <th>USERTYPE</th>
             <th>Status</th>
             <th>DETAILS</th>
@@ -107,7 +122,10 @@ $run  = mysqli_query($conn,$sql);
             <td><?php echo $row['username']?></td>
             <td><?php echo $row['email']?></td>
             <td><?php echo $row['password']?></td>       
-            <td><img src="<?php echo $row['anh']?>" alt="" width = "150px;">     
+            <td><img src="<?php echo $row['anh']?>" alt="" width = "150px;">
+            <td><?php echo $row['address']?></td> 
+            <td><?php echo $row['phone']?></td> 
+            <td><?php echo $row['level']?></td>      
             <td><?php echo $row['usertype']?></td>    
             <td> <?php echo $row['status']?"hiển thị":"ẩn"?></td>
             <td>

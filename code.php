@@ -234,9 +234,12 @@ $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload"]["name"]
 $username = $_POST['username'];
 $email =$_POST['email'];
 $password =$_POST['password'];
+$address =$_POST['address'];
+$phone =$_POST['phone'];
+$level =$_POST['level'];
 $status = isset($_POST['status'])?$_POST['status']:0;
 $usertype = $_POST['usertype'];
-$sqlres = "INSERT INTO user(username,email,password,anh,usertype,status) VALUES('$username','$email','$password','$anh','$usertype','$status')";
+$sqlres = "INSERT INTO user(username,email,password,anh,address,phone,level,usertype,status) VALUES('$username','$email','$password','$anh','$address','$phone','$level','$usertype','$status')";
 $run = mysqli_query($conn,$sqlres);
   if($usertype =='admin'){
     header('location:showinfo.php');
@@ -305,9 +308,12 @@ if(isset($_POST['newuseredit'])) {
   $email = $_POST['email'];
   $anh = "http://localhost/shopping/img/".basename($_FILES["fileToUpload_edit"]["name"]);
   $password = $_POST['password'];
-  $usertype = $_POST['usertype'];
+  $address =$_POST['address'];
+  $phone =$_POST['phone'];
+  $level =$_POST['level'];
+  $usertype = $_POST['update_usertype'];
   $status = isset($_POST['status'])?$_POST['status']:0;
-  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',usertype='$usertype',status ='$status' Where id = '$id'";
+  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',address = '$address',phone = '$phone',level = '$level',usertype='$usertype',status ='$status' Where id = '$id'";
   
   echo $sql;
   $run = mysqli_query($conn,$sql) or die("Hiện tại chưa thay đổi được");
