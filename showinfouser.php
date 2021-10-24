@@ -130,6 +130,7 @@ $run  = mysqli_query($conn,$sql);
                                                 $i=0;
                                                      foreach( $customerList as $key => $row){
                                                       $i++;
+                                                      if($row['usertype'] == 'user'){
                                                 ?>
                                                 <tr><img src="" alt="">
             <td><?php echo $i;?></td>
@@ -154,7 +155,7 @@ $run  = mysqli_query($conn,$sql);
             </td>
           </tr>
           <?php 
-                                            }
+                                                      } }
                                          }       
                                else{
                                  return null;
@@ -169,6 +170,7 @@ $run  = mysqli_query($conn,$sql);
         $i = 0;
         foreach( $customerList as $key => $row){
           $i++;
+          if($row['usertype'] == 'user'){
 ?>
      <tr><img src="" alt="">
             <td><?php echo $i?></td>
@@ -193,7 +195,7 @@ $run  = mysqli_query($conn,$sql);
             </td>
           </tr>
           <?php
-           }
+        }}
             }
           ?>
         </tbody>
