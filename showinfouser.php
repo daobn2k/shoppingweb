@@ -41,13 +41,21 @@ $run  = mysqli_query($conn,$sql);
                 <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password">
             </div>
             <div class="form-group">
-                          <label for="fileToUpload">Ảnh</label>
+                          <label for="phone">Phone</label>
+                          <input type="text" name="phone" class="form-control" placeholder="Enter phone">
+            </div>  
+            <div class="form-group">
+                          <label for="address">Address</label>
+                          <input type="text" name="address" class="form-control" placeholder="Enter  address">
+            </div>  
+            <div class="form-group">
+                          <label for="fileToUpload">Image</label>
                           <input type="file" name="fileToUpload" id="fileToUpload">
             </div>  
             <div class="form-check">
                                   <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="status" id="status" value="1" checked>
-                                Trạng Thái
+                                Status
                   </label>
              </div>
              <div class="form-group">
@@ -110,9 +118,8 @@ $run  = mysqli_query($conn,$sql);
             <th>User </th>
             <th>Email</th>
             <th>Password</th>
-            <th>AVATAR</th>
-            <th>USERTYPE</th>
-            <th>Status</th>
+            <th>Phone</th>
+            <th>Address</th>
             <th>EDIT</th>
             <th>DELETE</th>
           </tr>
@@ -129,17 +136,16 @@ $run  = mysqli_query($conn,$sql);
 
                                                 $i=0;
                                                      foreach( $customerList as $key => $row){
-                                                      $i++;
                                                       if($row['usertype'] == 'user'){
+                                                        $i++;
+                                                     
                                                 ?>
                                                 <tr><img src="" alt="">
             <td><?php echo $i;?></td>
             <td><?php echo $row['username']?></td>
             <td><?php echo $row['email']?></td>
             <td><?php echo $row['password']?></td>       
-            <td><img src="<?php echo $row['anh']?>" alt="" width = "150px;">     
-            <td><?php echo $row['usertype']?></td>    
-            <td> <?php echo $row['status']?"hiển thị":"ẩn"?></td>
+            <td> <?php echo $row['address']?></td>
             <td>
             
                 <form action="edituser.php" method="post">
@@ -169,17 +175,17 @@ $run  = mysqli_query($conn,$sql);
         
         $i = 0;
         foreach( $customerList as $key => $row){
-          $i++;
           if($row['usertype'] == 'user'){
+          $i++;
+
 ?>
      <tr><img src="" alt="">
-            <td><?php echo $i?></td>
+            <td><?php echo $i;?></td>
             <td><?php echo $row['username']?></td>
             <td><?php echo $row['email']?></td>
             <td><?php echo $row['password']?></td>       
-            <td><img src="<?php echo $row['anh']?>" alt="" width = "150px;">     
-            <td><?php echo $row['usertype']?></td>    
-            <td> <?php echo $row['status']?"hiển thị":"ẩn"?></td>
+            <td><?php echo $row['phone']?></td>       
+            <td> <?php echo $row['address']?></td>
             <td>
             
                 <form action="edituser.php" method="post">

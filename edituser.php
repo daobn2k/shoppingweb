@@ -39,10 +39,6 @@ foreach($run as $row ){
                           <input type="password" class = "form-control"name="password" id="password" value ="<?php echo $row['password']?>">
                         </div>           
                         <div class="form-group">
-                          <label for="password">Confirm PassWord</label>
-                          <input type="password" name="password" id="password" class="form-control"  value ="<?php echo $row['password']?>">
-                        </div>     
-                        <div class="form-group">
                           <label for="fileToUpload_edit">Ảnh</label>
                           <input type="file" name="fileToUpload_edit" id="fileToUpload_edit" value="<?php echo $row['anh']?>">
                           <img src="<?php echo $row['anh']?>" alt="" width=300px>
@@ -58,14 +54,6 @@ foreach($run as $row ){
             <div class="form-group">
                 <label>Level</label>
                 <input type="text" name="level" class="form-control" value ="<?php echo $row['level']?>" placeholder="Level">
-            </div>
-            <div class="form-group">
-                <label>USER TYPE</label>
-               <select name="update_usertype" id="">
-               <option value="admin">Admin</option>
-               <option value="admin2">Admin2</option>
-               <option value="user">User</option>
-               </select>
             </div>
                         <div class="row">
                             <div class="col-sm-6 pb2 pb-sm-4 pb-lg-0 pr-0">

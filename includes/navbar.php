@@ -6,7 +6,7 @@
   <div class="sidebar-brand-icon rotate-n-15">
     
   </div>
-  <div class="sidebar-brand-text mx-3"></div>
+  <div class="sidebar-brand-text mx-3">ECop Mart</div>
 </a>
 
 <!-- Divider -->
@@ -79,6 +79,19 @@
   </div>
 </li>
 
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseT1312312314" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-product"></i>
+    <span>Quản Lí Tài Chính</span>
+  </a>
+  <div id="collapseT1312312314" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <a class="collapse-item" href="thu.php">Thống kê Thu</a>
+      <a class="collapse-item" href="chi.php">Thống kê Chi</a>
+
+    </div>
+  </div>
+</li>
 
 
 <!-- Nav Item - Utilities Collapse Menu
@@ -107,6 +120,11 @@
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
+<?php 
+
+if (isset($_SESSION["usertype"] )) {
+        
+        if ($_SESSION["usertype"] == "admin") { ?>
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
     <i class="fas fa-fw fa-folder"></i>
@@ -114,19 +132,15 @@
   </a>
   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded"> 
-    <?php 
 
-      if (isset($_SESSION["usertype"] )) {
-        
-            if ($_SESSION["usertype"] == "admin") { ?>
+    
               <a class="collapse-item" href="showinfo.php" name="button1">Hiển Thị Admin </a>
               <a class="collapse-item" href="showinfoadmin2.php" name="button3">Hiển Thị Nhân viên</a>
-    <?php }}?>  
-      <a class="collapse-item" href="showinfouser.php" name="button2">Hiển Thị Người Dùng</a>
       <div class="collapse-divider"></div>
     </div>
   </div>
 </li>
+<?php }}?>  
 
 <!-- Nav Item - Charts -->
 <!-- Divider -->

@@ -311,11 +311,11 @@ if(isset($_POST['newuseredit'])) {
   $address =$_POST['address'];
   $phone =$_POST['phone'];
   $level =$_POST['level'];
-  $usertype = $_POST['update_usertype'];
   $status = isset($_POST['status'])?$_POST['status']:0;
-  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',address = '$address',phone = '$phone',level = '$level',usertype='$usertype',status ='$status' Where id = '$id'";
+
+  echo $email . $anh . $password.$phone.$level.$usertype.$status ;
+  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',address = '$address',phone = '$phone',level = '$level',status ='$status' Where id = '$id'";
   
-  echo $sql;
   $run = mysqli_query($conn,$sql) or die("Hiện tại chưa thay đổi được");
   header('location:showinfouser.php');
 }
