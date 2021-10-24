@@ -9,10 +9,21 @@ $run  = mysqli_query($conn,$sql);
 
 $newSql = "SELECT created,quantity,price FROM shopping_cart.order,order_detail  ORDER BY created";
 $list = Result($newSql);
+$count_data = count($list);
+$limit = 25;
+$page_count = ceil($count_data/$limit);
+if (!isset($_GET['page'])) {
+  $page = 1;
+} else {
+  $page = $_GET['page'];
+}
+$fist_data_of_page = ($page-1)*$limit;
 
+$sql = "SELECT created,quantity,price FROM shopping_cart.order,order_detail  ORDER BY created limit $fist_data_of_page,$limit";
+$list_data = Result($sql);
 $totalBill = 0;
 
-foreach ($list as $key => $value) {
+foreach ($list_data as $key => $value) {
   $totalBill += $value['price'] * $value['quantity'];
 }
 ?>
@@ -102,7 +113,7 @@ foreach ($list as $key => $value) {
       
       
         $i = 0;
-        foreach( $list as $key => $row){
+        foreach( $list_data as $key => $row){
           $i++;
           $total = $row['price'] * $row['quantity'];
 
@@ -120,6 +131,17 @@ foreach ($list as $key => $value) {
       </table>
 
    
+    </div>
+    <div class="pagenator">
+        <ul class="pagination pagination-lg justify-content-center">
+<?php
+    for ($i=1; $i <= $page_count; $i++) { 
+?>
+            <li class="page-item"><a class="page-link" href="?page=<?=$i?>"><?=$i?></a></li>
+<?php
+    }   
+?>
+        </ul>
     </div>
   </div>
 <?php

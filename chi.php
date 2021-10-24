@@ -9,9 +9,23 @@ $newSql = "SELECT * FROM products ";
 
 $list = Result($newSql);
 
+$limit = 10;
+$count_data = count($list);
+$page_count = ceil($count_data/$limit);
+if (!isset($_GET['page'])) {
+  $page = 1;
+} else {
+  $page = $_GET['page'];
+}
+
+$fist_data_of_page = ($page-1)*$limit;
+
+$sql = "select * from products limit $fist_data_of_page,$limit";
+$List_data = Result($sql);
+
 $totalBill = 0;
 
-foreach ($list as $key => $value) {
+foreach ($List_data as $key => $value) {
   $totalBill += $value['price'] * $value['quantity'];
 }
 ?>
@@ -102,7 +116,7 @@ foreach ($list as $key => $value) {
       
       
         $i = 0;
-        foreach( $list as $key => $row){
+        foreach( $List_data as $key => $row){
           $i++;
           $total = $row['price'] * $row['quantity'];
 
@@ -123,8 +137,20 @@ foreach ($list as $key => $value) {
 
    
     </div>
+    <div class="pagenator">
+        <ul class="pagination pagination-lg justify-content-center">
+<?php
+    for ($i=1; $i <= $page_count; $i++) { 
+?>
+            <li class="page-item"><a class="page-link" href="?page=<?=$i?>"><?=$i?></a></li>
+<?php
+    }   
+?>
+        </ul>
+    </div>
   </div>
 <?php
+// include('includes/pagenator.php');
 include('includes/scripts.php');
 include('includes/footer.php');
 ?>

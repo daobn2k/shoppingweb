@@ -6,7 +6,7 @@
   <div class="sidebar-brand-icon rotate-n-15">
     
   </div>
-  <div class="sidebar-brand-text mx-3">ECop Mart</div>
+  <div class="sidebar-brand-text mx-3">Co.op Mart</div>
 </a>
 
 <!-- Divider -->
