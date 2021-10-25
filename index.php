@@ -7,7 +7,7 @@ include('includes/navbar.php');
 
 
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" style="height:100%;">
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -51,8 +51,17 @@ include('includes/navbar.php');
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+              <?php 
+              $newSql = "SELECT created,quantity,price FROM shopping_cart.order,order_detail  ORDER BY created";
+              $list = Result($newSql);
+              $totalBill = 0;
+
+              foreach ($list as $key => $value) {
+                $totalBill += $value['price'] * $value['quantity'];
+              }
+              ?>
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Money collected</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalBill?> VNĐ</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -61,24 +70,24 @@ include('includes/navbar.php');
         </div>
       </div>
     </div>
+    <?php $sql = "select * from products ";
+$List_data = Result($sql);
 
+$totalBillSpend = 0;
+
+foreach ($List_data as $key => $value) {
+  $totalBillSpend += $value['price'] * $value['quantity'];
+}?>     
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-info shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+Spending money</div>
               <div class="row no-gutters align-items-center">
-                <div class="col-auto">
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                </div>
-                <div class="col">
-                  <div class="progress progress-sm mr-2">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalBillSpend?> VNĐ</div>
               </div>
             </div>
             <div class="col-auto">
@@ -95,8 +104,8 @@ include('includes/navbar.php');
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Profit / Loss</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalBillSpend - $totalBill?> VNĐ</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-comments fa-2x text-gray-300"></i>

@@ -2,6 +2,8 @@
 // // products
 session_start();
 include('includes/connection.php');
+include('database/db_global.php');
+
 if(isset($_POST['addnew'])){
     
     $catname = $_POST['catname'];
@@ -311,27 +313,35 @@ if(isset($_POST['newuseredit'])) {
   $address =$_POST['address'];
   $phone =$_POST['phone'];
   $level =$_POST['level'];
+  $usertype = $_POST['usertype'];
   $status = isset($_POST['status'])?$_POST['status']:0;
 
-  echo $email . $anh . $password.$phone.$level.$usertype.$status ;
-  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',address = '$address',phone = '$phone',level = '$level',status ='$status' Where id = '$id'";
+  $sql ="UPDATE user SET username =' $name',email='$email',password ='$password',anh = '$anh',address = '$address',phone = '$phone',level = '$level',usertype='$usertype',status ='$status' Where id = '$id'";
   
   $run = mysqli_query($conn,$sql) or die("Hiện tại chưa thay đổi được");
-  header('location:showinfouser.php');
-}
-if(isset($_POST['deleteadminbtn'])){
-  $id = $_POST['deleteuserid'];
-  $sql ="DELETE FROM user WHERE id ='$id'";
-  $run = mysqli_query($conn,$sql) or die("Hổng Có Xóa Được");
-  if($update_usertype =='admin'){
+  if($usertype =='admin'){
     header('location:showinfo.php');
-  }else if($update_usertype =='admin2'){
+  }else if($usertype =='admin2'){
     header('location:showinfoadmin2.php');
   }else{
     header('location:showinfouser.php');
   }
-    
+}
+if(isset($_POST['deleteadminbtn'])){
+  $id = $_POST['deleteuserid'];
+  $sql ="DELETE FROM user WHERE id ='$id'";
 
+  $sqlSelect = "SELECT * FROM user Where id = '$id'";
+  $run = mysqli_query($conn,$sql) or die("Hổng Có Xóa Được");
+
+  $result = Result($sqlSelect);
+  if($result['usertype'] =='admin'){
+    header('location:showinfo.php');
+  }else if($result['usertype'] =='admin2'){
+    header('location:showinfoadmin2.php');
+  }else{
+    header('location:showinfouser.php');
+  }
 }
 if(isset($_POST['deleteuserbtn'])){
   $id = $_POST['deleteuserid'];

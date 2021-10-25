@@ -55,6 +55,7 @@ foreach($run as $row ){
                 <label>Level</label>
                 <input type="text" name="level" class="form-control" value ="<?php echo $row['level']?>" placeholder="Level">
             </div>
+                <input type="hidden" name="usertype" class="form-control" value ="<?php echo $row['usertype']?>" placeholder="Level">
                         <div class="row">
                             <div class="col-sm-6 pb2 pb-sm-4 pb-lg-0 pr-0">
                                 <div class="form-check">
